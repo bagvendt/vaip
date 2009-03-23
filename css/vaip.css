@@ -1,0 +1,49 @@
+body, td {
+    font-family: "Tahoma";
+    font-size: 11px;
+    margin: 0px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+}
+
+.center {
+    width: 800px;
+    margin: 0px auto;
+}
+
+#dashboard {
+    background-color: #3B5998;
+    color: #FFFFFF;
+    border-bottom: 3px solid #DEDEDE;
+    margin-bottom: 20px;
+    height: 27px;
+}
+
+#logo {
+    font-size: 16px;
+    float: left;
+    margin: 4px 5px;
+}
+
+#menu a {
+    color: #FFFFFF;
+    font-weight: bold;
+    float: left;
+    padding: 7px 10px;
+    text-decoration: none;
+}
+
+#menu a:hover {
+    background-color: #5C75AA;
+}
