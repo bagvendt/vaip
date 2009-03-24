@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /**
  * An Employee
@@ -49,7 +49,5 @@ $database = 'fadl';
 	return new Employee ($empID , $row['name'] , $row['address'],  $row['email'] , $row['phone']);
 		
 	}
-	
-	
 }
 ?>

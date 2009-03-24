@@ -10,9 +10,9 @@ ini_set('display_errors', 'on');
 
 $month = array();
 $jan1 = 1230768000;
-$month[0] = $jan1;
-$schema = new Schema ($month);
+$jan2 = 1230854400;
+$schema = new Schema ($jan1 , $jan2);
 
-echo $schema->getShift($jan1 , 1)->get_message();
+echo $schema->getShift($jan2 , 3)->get_message();
 
 ?>

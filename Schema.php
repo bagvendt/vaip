@@ -7,8 +7,18 @@ class Schema
 	private $schema = array();
 	
 	//$month is a date array
-	function __construct($month)
+	function __construct($startDate , $slutdate)
 	{
+		
+		$month = array();
+		$i = $startDate;
+		while ($i <= $slutdate)
+		{
+		$month[$i] = $i;
+		$i += 86400;
+		
+		}	
+		
 		foreach ($month as $date)
 		{
 			
