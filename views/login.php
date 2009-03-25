@@ -1,3 +1,7 @@
+<?php
+
+$login = <<<LOGIN
+
 <form style="margin: 0px auto; width: 300px;" method="POST" action="/Users/Login/">
 
     <table width="100%">
@@ -20,3 +24,7 @@
     </table>
 
 </form>
+
+LOGIN;
+
+?>

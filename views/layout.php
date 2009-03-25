@@ -23,9 +23,11 @@ $layout = <<<LAYOUT
                 <div id="logo">VAIP</div>
                 
                 <div id="menu">{$this->menu}</div>
+                
+                <div id="user_email">{$this->email}</div>
             
             </div>
-        
+            
             <div>{$this->body}</div>
         
         </div>

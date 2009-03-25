@@ -16,7 +16,12 @@ class Controllers {
         
         // logged in or not?
         if($this->user = $this->models->getUser()) {
+            // menu
+            $this->views->addMenuItem('/Users/Profile/', 'Profile');
             $this->views->addMenuItem('/Users/Logout/', 'Logout');
+            // user
+            echo $this->models->getUser()->getEmail();
+            $this->views->flush('email');
         }
     }
     

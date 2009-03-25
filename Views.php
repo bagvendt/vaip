@@ -12,9 +12,14 @@ class Views {
         ob_start();
     }
     
+    function populate($layer, $population) {
+        $this->{$layer} = $population;
+    }
+    
     function flush($buffer, $partial = null) {
         if($partial != null) {
-            $this->{$buffer} = file_get_contents(VIEWS .'/'. $partial .'.php');
+            require_once VIEWS .'/'. $partial .'.php';
+            $this->{$buffer} = eval('return $'. $partial .';');
         } else {
             $this->{$buffer} = ob_get_contents();
         }

@@ -26,7 +26,7 @@ h1, h2, h3 {
     background-color: #3B5998;
     color: #FFFFFF;
     border-bottom: 3px solid #DEDEDE;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     height: 27px;
 }
 
@@ -46,4 +46,17 @@ h1, h2, h3 {
 
 #menu a:hover {
     background-color: #5C75AA;
+}
+
+#user_email {
+    font-weight: bold;
+    padding: 7px 10px;
+    float: right;
+}
+
+#profile_settings {
+    padding: 10px;
+    border: 1px solid #DEDEDE;
+    background-color: #EDEDED;
+    float: left;
 }

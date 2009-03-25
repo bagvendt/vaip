@@ -18,8 +18,12 @@ function main() {
     $models = new Models('localhost', 'hallas', '40352246', 'thehallas');
     $route  = new Route($_SERVER['REQUEST_URI']);
     
-    require_once CONTROLLERS .'/'. $route->getParam(1) .'.php';
-    $controller = eval('return new '. $route->getParam(1) .'($views, $models, $route);');
+    if($route->getParam(1)) {
+        require_once CONTROLLERS .'/'. $route->getParam(1) .'.php';
+        $controller = eval('return new '. $route->getParam(1) .'($views, $models, $route);');
+    } else {
+        header('location: /Welcome/');
+    }
     
     if(!$route->getParam(2)) {
         $controller->index();

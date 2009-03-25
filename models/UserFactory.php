@@ -4,7 +4,7 @@ class UserFactory {
 
     function create($user_id) {
         $result = mysql_query('SELECT *
-                               FROM Users AS u
+                               FROM users AS u
                                WHERE u.user_id = "'. $user_id .'"');
         $row = mysql_fetch_assoc($result);
         return new User($row['user_id'], $row['email'], $row['password'], $row['employee_id']);
@@ -12,7 +12,7 @@ class UserFactory {
     
     public function login($email, $password) {
         $result = mysql_query('SELECT *
-                               FROM Users AS u
+                               FROM users AS u
                                WHERE u.email = "'. $email .'"
                                AND u.password = "'. $password .'"');
         if(mysql_num_rows($result) == 1) {
@@ -37,7 +37,7 @@ class User {
     }
     
     function getEmployee() {
-        return EmployeeFactory::create($this->employee);
+        return EmployeeFactory::create($this->employee_id);
     }
     
     function getUserId() {

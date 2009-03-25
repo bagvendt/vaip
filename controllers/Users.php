@@ -30,6 +30,12 @@ class Users extends Controllers {
         header('location: /Welcome/');
     }
     
+    function Profile() {
+        $employee = $this->user->getEmployee();
+        $this->views->populate('profile', $employee);
+        $this->views->flush('body', 'profile');
+    }
+    
 }
 
 ?>
