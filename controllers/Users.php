@@ -32,8 +32,19 @@ class Users extends Controllers {
     
     function Profile() {
         $employee = $this->user->getEmployee();
-        $this->views->populate('profile', $employee);
-        $this->views->flush('body', 'profile');
+        if(!$this->route->getParam(3)) {
+            $this->views->populate('employee', $employee);
+            $this->views->populate('user', $this->user);
+            $this->views->flush('body', 'profile');
+        } else {
+            $this->user->setEmail($_POST['email']);
+            $this->user->save();
+            $employee->setName($_POST['name']);
+            $employee->setAddress($_POST['address']);
+            $employee->setPhone($_POST['phone']);
+            $employee->save();
+            header('location: /Users/Profile/');
+        }
     }
     
 }

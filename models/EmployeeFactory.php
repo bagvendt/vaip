@@ -4,7 +4,7 @@
 class EmployeeFactory {
 
     function create($employee_id) {
-        $result = mysql_query('SELECT * FROM employee WHERE employee_id = "'. $employee_id .'"');
+        $result = mysql_query('SELECT * FROM employees AS e WHERE e.employee_id = "'. $employee_id .'"');
         $row = mysql_fetch_assoc($result);
         return new Employee($employee_id, $row['name'], $row['address'], $row['phone']);
     }
@@ -38,6 +38,26 @@ class Employee {
     
     function getAddress() {
         return $this->address;
+    }
+    
+    function setName($name) {
+        $this->name = $name;
+    }
+    
+    function setPhone($phone) {
+        $this->phone = $phone;
+    }
+    
+    function setAddress($address) {
+        $this->address = $address;
+    }
+
+    function save() {
+        mysql_query('UPDATE employees AS e
+                     SET e.name = "'. $this->name .'",
+                         e.address = "'. $this->address .'",
+                         e.phone = "'. $this->phone .'"
+                     WHERE e.employee_id = "'. $this->employee_id .'"');
     }
 
 }

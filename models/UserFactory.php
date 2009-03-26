@@ -55,6 +55,26 @@ class User {
     function getEmployeeId() {
         return $this->employee_id;
     }
+    
+    function setEmail($email) {
+        $this->email = $email;
+    }
+    
+    function setPassword($password) {
+        $this->password = $password;
+    }
+    
+    function setEmployeeId($employee_id) {
+        $this->employee_id = $employee_id;
+    }
+    
+    function save() {
+        mysql_query('UPDATE users AS u
+                     SET u.email = "'. $this->email .'",
+                         u.password = "'. $this->password .'"
+                         u.employee_id = "'. $this->employee_id .'"
+                     WHERE u.user_id = "'. $this->user_id .'"');
+    }
 
 }
 
