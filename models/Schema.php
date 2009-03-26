@@ -9,7 +9,11 @@ class Schema
 	//$month is a date array
 	function __construct($startDate , $slutdate)
 	{
-		
+        $this->endDate = $slutdate;
+        $this->startDate = $startDate;
+        $this->typePointer = 0;
+		$this->datePointer = $startDate;
+
 		$month = array();
 		$i = $startDate;
 		while ($i <= $slutdate)
@@ -35,5 +39,38 @@ class Schema
 	{
 		return $this->schema[$date][$type];
 	}
+
+
+
+    //Iterator, kan sikkert gøres smartere med php
+    var $datePointer;
+    var $typePointer;
+    var $endDate;
+    var $startDate;
+
+    function next()
+    {
+        $shift = $this->schema[$this->datePointer][$this->typePointer];
+        if($this->typePointer == 3)
+        {
+            $this->typePointer = 0;
+            $this->datePointer += 86400;
+        }
+        else{
+            $this->typePointer += 1;
+        }
+        return $shift;
+    }
+    function hasNext()
+    {
+        return ($this->datePointer != $this->endDate || $this->typePointer != 3);
+    }
+    function reset()
+    {
+        $this->typePointer = 0;
+        $this->datePointer = $this->startDate;
+    }
+
+
 }
 ?>
