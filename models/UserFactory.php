@@ -37,7 +37,7 @@ class User {
     }
     
     function getEmployee() {
-        return EmployeeFactory::create($this->employee_id);
+        return EmployeeFactory::createEmployee($this->employee_id);
     }
     
     function getUserId() {

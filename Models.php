@@ -12,13 +12,10 @@ class Models {
         // Model-specs
         require_once MODELS. '/UserFactory.php';
         require_once MODELS. '/EmployeeFactory.php';
+        require_once MODELS. '/ShiftFactory.php';
+        require_once MODELS. '/Schema.php';
 
-        /*
-
-        require_once 'Shifts.php';
-        require_once 'Schemas.php';
-
-        */
+        
 
         // Database
         $this->dbhost = $dbhost;

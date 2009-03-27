@@ -19,6 +19,8 @@ class Controllers {
             // menu
             $this->views->addMenuItem('/Users/Profile/', 'Profile');
             $this->views->addMenuItem('/Users/Logout/', 'Logout');
+            $this->views->addMenuItem('/Schemas/', 'Skema');
+
             // user
             echo $this->models->getUser()->getEmail();
             $this->views->flush('email');

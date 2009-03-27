@@ -15,7 +15,7 @@ require_once 'Route.php';
 function main() {
     session_start();
     $views  = new Views();
-    $models = new Models('localhost', 'hallas', '40352246', 'thehallas');
+    $models = new Models('localhost', 'fadl', 'vaip', 'fadl');
     $route  = new Route($_SERVER['REQUEST_URI']);
     
     if($route->getParam(1)) {

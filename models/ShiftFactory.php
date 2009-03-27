@@ -81,13 +81,7 @@
 	{
         function createShift($dayID , $type)
         {
-            $host = 'localhost';
-            $username = 'fadl';
-            $password = 'vaip';
-            $database = 'fadl';
 
-            mysql_connect($host, $username, $password);
-            mysql_select_db($database);
 
             $result = mysql_query('SELECT * FROM shift WHERE dayid = "'. $dayID .'" AND type = "' . $type .'"');
             $row = mysql_fetch_assoc($result);
@@ -97,13 +91,7 @@
         //byt om på rækkefølge af userid og msg, hvis vagter ofte bliver oprettet med en user
         function insertShift($dayID, $type, $message = 'null', $userid = 'null' )
         {
-            $host = 'localhost';
-            $username = 'fadl';
-            $password = 'vaip';
-            $database = 'fadl';
-
-            mysql_connect($host, $username, $password);
-            mysql_select_db($database);
+            
             
             $result = mysql_query("insert into shift values($dayID, $type, $userid, '$message')");
             return $result;
@@ -124,13 +112,7 @@
 
         function addEmployee($dayID, $type, $userid)
         {
-            $host = 'localhost';
-            $username = 'fadl';
-            $password = 'vaip';
-            $database = 'fadl';
-
-            mysql_connect($host, $username, $password);
-            mysql_select_db($database);
+           
 
             $result = mysql_query("UPDATE shift SET userid = $userid WHERE dayID = $dayID AND type = $type");
             return $result;
@@ -138,13 +120,7 @@
 
         function addMessage($dayID, $type, $message)
         {
-            $host = 'localhost';
-            $username = 'fadl';
-            $password = 'vaip';
-            $database = 'fadl';
-
-            mysql_connect($host, $username, $password);
-            mysql_select_db($database);
+            
 
             $result = mysql_query("UPDATE shift SET message = $message WHERE dayID = $dayID AND type = $type");
             return $result;

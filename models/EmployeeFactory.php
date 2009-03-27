@@ -53,30 +53,17 @@ class EmployeeFactory
 	
 	function createEmployee($empID)
 	{
-		$host = 'localhost';
-        $username = 'fadl';
-        $password = 'vaip';
-        $database = 'fadl';
-        
-
-	mysql_connect($host, $username, $password);
-	mysql_select_db($database);
-	$result = mysql_query('SELECT * FROM employee WHERE empid = '. $empID);
-	$row = mysql_fetch_assoc($result); 		
-	return new Employee ($empID , $row['name'] , $row['address'],  $row['email'] , $row['phone']);
+		
+        $result = mysql_query('SELECT * FROM employee WHERE empid = '. $empID);
+        $row = mysql_fetch_assoc($result);
+        return new Employee ($empID , $row['name'] , $row['address'],  $row['email'] , $row['phone']);
 		
 	}
 
     //lav om så empID bliver auto increment, og returneres
     function insertEmployee($id,$name,$address,$email,$phone )
         {
-            $host = 'localhost';
-            $username = 'fadl';
-            $password = 'vaip';
-            $database = 'fadl';
-
-            mysql_connect($host, $username, $password);
-            mysql_select_db($database);
+            
 
             $result = mysql_query("insert into employee values($id, '$name', '$address', '$email', '$phone')");
             return $result;
