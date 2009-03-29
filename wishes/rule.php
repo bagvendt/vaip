@@ -25,7 +25,7 @@ abstract class rule {
         mysql_select_db($this->dbname);
      }
 
-     abstract public function apply();
+     abstract public function apply($startDate, $endDate);
    
 }
 ?>

@@ -88,23 +88,21 @@
             return new Shift ($dayID , $type , $row['userid'],  $row['message']);
         }
 
-        //byt om på rækkefølge af userid og msg, hvis vagter ofte bliver oprettet med en user
-        function insertShift($dayID, $type, $message = 'null', $userid = 'null' )
+        //byt om på rækkefølge af userid og msg, hvis vagter ofte bliver oprettet med en message
+        function insertShift($dayID, $type, $userid = 'null', $message = 'null')
         {
-            
-            
             $result = mysql_query("insert into shift values($dayID, $type, $userid, '$message')");
             return $result;
         }
 
-        function insertShifts($startDate , $slutdate, $message = 'null', $userid = 'null')
+        function insertShifts($startDate , $slutdate, $userid = 'null', $message = 'null')
         {
             $i = $startDate;
             while ($i <= $slutdate)
             {
                 for ($j = 0 ; $j < 4 ; $j++)
                 {
-                    $this->insertShift($i, $j, $message, $userid );
+                    $this->insertShift($i, $j, $userid, $message);
                 }
                 $i += 86400;
             }

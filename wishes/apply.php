@@ -10,6 +10,7 @@
 
        
         //NOTE: reglerne er ikke helt rigtige endnu. OneGreen/Yellow skal tjekke om der er mulighed for link
+        //
 
         $rule = array();
         $rule[0] = new OneGreen('localhost', 'fadl', 'vaip', 'fadl') or die("mysql_error()");
@@ -21,10 +22,12 @@
         $more = true;
 
         $i = 0;
+        $startDate = 1;
+        $endDate = 10;
         while($more)
         {
             
-            if($rule[$i]->apply())
+            if($rule[$i]->apply($startDate, $endDate))
             {
                 $i = 0;
 
