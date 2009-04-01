@@ -14,7 +14,7 @@ class OneGreen extends rule
     //EXCEPT VIRKER IKKE I MySQL wtf!!?!?
     function apply($startDate, $endDate)
     {
-        $result = mysql_query(      'SELECT w.shift_id as shift_id, max(w.emp_id) as emp_id
+        $result = mysql_query(      "SELECT w.shift_id as shift_id, max(w.emp_id) as emp_id
                                     FROM wish as w, wish_shift as s
                                     WHERE (w.priority = 1 OR w.priority = 2)  AND s.emp_id = 0 AND w.shift_id = s.shift_id AND NOT w.occupied
                                     AND w.shift_id NOT IN
@@ -25,7 +25,7 @@ class OneGreen extends rule
                                                     GROUP BY w.shift_id
                                                     HAVING count(w.shift_id) = 1)
                                     GROUP BY w.shift_id
-                                    HAVING count(w.shift_id) = 1');
+                                    HAVING count(w.shift_id) = 1");
         $row = mysql_fetch_assoc($result);
 
         $emp_id = $row['emp_id'];

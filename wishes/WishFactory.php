@@ -9,8 +9,17 @@
  *
  * @author essif
  */
-class WishFactory {
 
+require_once 'rule.php';
+require_once 'OneGreen.php';
+require_once 'OneYellow.php';
+require_once 'twoNV.php';
+require_once 'leastGreen.php';
+require_once 'leastYellow.php';
+
+
+class WishFactory {
+      
     function applyAll($startDate, $endDate)
     {
         $rule = array();
@@ -30,12 +39,12 @@ class WishFactory {
             {
                 $i = 0;
 
-            } elseif ($i >= count($rule))
+            } elseif ($i >= count($rule) - 1)
             {
                 $more = false;
             } else
             {
-                $i += 1; //chage to += 86400 for unix time
+                $i += 1;
             }
 
 
@@ -44,9 +53,9 @@ class WishFactory {
 
     function createShift($dayID , $type)
         {
-            $result = mysql_query('SELECT * FROM wish_shift WHERE dayid = "'. $dayID .'" AND type = "' . $type .'"');
+            $result = mysql_query("SELECT * FROM wish_shift WHERE day_id = $dayID  AND type = $type");
             $row = mysql_fetch_assoc($result);
-            return new WishShift ($dayID , $type , $row['userid']);
+            return new WishShift ($dayID , $type , $row['emp_id']);
         }
 
     function insertEmptyShift($dayID, $type)
@@ -55,7 +64,7 @@ class WishFactory {
             return $result;
         }
 
-        //chage to += 86400 for unix time
+
     function insertShifts($startDate , $slutdate)
     {
         $i = $startDate;
@@ -63,15 +72,22 @@ class WishFactory {
         {
             for ($j = 0 ; $j < 3 ; $j++)
             {
-                $this->insertShift($i, $j);
+                $this->insertEmptyShift($i, $j);
             }
-            $i += 1;
+            $i += 86400;
         }
     }
 
     function commitSchema($startDate , $slutdate)
     {
-        //TODO
+        $schema = new WishSchema($startDate , $slutdate);
+        
+
+        while($schema->hasNext())
+        {
+            
+            $schema->next()->commitShift();
+        }
 
 
     }
@@ -89,7 +105,7 @@ class WishShift
 		 * @param date - The date of the shift (in UNIX-time)
 		 * @param type - The type of the shift (in integers)
  		*/
-		function __construct($date , $type , $empID)
+		function __construct($date , $type , $empID = "0")
 		{
 			$this->date = $date;
 			$this->type = $type;
@@ -118,6 +134,12 @@ class WishShift
 		 	 return $thisShift->type;
 		}
 
+        //possible chage to update, or add check to see if the shift already exist
+        function commitShift()
+        {
+            ShiftFactory::insertShift($this->date, $this->type, $this->empID);
+        }
+
 	}
 
 class WishSchema
@@ -125,7 +147,7 @@ class WishSchema
 
 	private $schema = array();
 
-	//change i to += 86400 for unix time
+	
 	function __construct($startDate , $slutdate)
 	{
         $this->endDate = $slutdate;
@@ -138,7 +160,7 @@ class WishSchema
 		while ($i <= $slutdate)
 		{
 		$month[$i] = $i;
-		$i += 1;
+		$i += 86400;
 
 		}
 
@@ -148,6 +170,7 @@ class WishSchema
 			$this->schema[$date][0] = WishFactory::createShift($date , 0);
 			$this->schema[$date][1] = WishFactory::createShift($date , 1);
 			$this->schema[$date][2] = WishFactory::createShift($date , 2);
+            $this->schema[$date][3] = WishFactory::createShift($date , 3);
 
 		}
 	}
@@ -181,7 +204,7 @@ class WishSchema
     }
     function hasNext()
     {
-        return ($this->datePointer != $this->endDate || $this->typePointer != 3);
+        return ($this->datePointer < $this->endDate || $this->typePointer != 3);
     }
     function reset()
     {

@@ -45,7 +45,7 @@
 		  */
 		function get_type() 
 		{		
-		 	 return $thisShift->type;		
+		 	 return $this->type;		
 		}
 
         function get_message()

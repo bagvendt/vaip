@@ -1,71 +1,74 @@
 <?php
 
-$month = <<<MONTH
+$month = "<table border='1'>
+            <thead>
+            <tr>
+            <th>Mandag</th>
+            <th>Tirsdag</th>
+            <th>Onsdag</th>
+            <th>Torsdag</th>
+            <th>Fredag</th>
+            <th>Lørdag</th>
+            <th>Søndag</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>";
+$schema = new Schema(1230768000, 1233273600);
+$point = date("N", $schema->next()->get_date());
+$schema->reset();
+
+for ($i = 1 ; $i < $point ; $i++)
+{
+   $month = $month . "<td></td>";
+}
 
 
-<table border="1">
-<thead>
-<tr>
-<th>M</th>
-<th>T</th>
-<th>O</th>
-<th>T</th>
-<th>F</th>
-<th>L</th>
-<th>S</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th><a href="/Schemas/Shift/1/">1</a></th>
-<th><a href="/Schemas/Shift/2/">2</a></th>
-<th><a href="/Schemas/Shift/3/">3</a></th>
-<th><a href="/Schemas/Shift/4/">4</a></th>
-<th><a href="/Schemas/Shift/5/">5</a></th>
-<th><a href="/Schemas/Shift/6/">6</a></th>
-<th><a href="/Schemas/Shift/7/">7</a></th>
-</tr>
-<tr>
-<td><a href="/Schemas/Shift/8/">8</a></td>
-<td><a href="/Schemas/Shift/9/">9</a></td>
-<td><a href="/Schemas/Shift/10/">10</a></td>
-<td><a href="/Schemas/Shift/11/">11</a></td>
-<td><a href="/Schemas/Shift/12/">12</a></td>
-<td><a href="/Schemas/Shift/13/">13</a></td>
-<td><a href="/Schemas/Shift/14/">14</a></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+while($schema->hasNext())
+{
+    $shift = $schema->Next();
+    $date = date("d M", $shift->get_date());
+    $type = $shift->get_type();
+
+    if($point > 7)
+    {
+        $month = $month . "</tr> <tr>";
+        $point = 1;
+    }
+
+    $day = "<td>
+            <table border = '1'>
+            <tbody>
+            <tr>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/0/\"> $date : DV</a></td>
+            </tr>
+            <tr>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/1/\"> $date : AV</a></td>
+            </tr>
+            <tr>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/2/\"> $date : NV</a></td>
+            </tr>
+            <tr>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/3/\"> $date : BV</a></td>
+            </tr>
+            </tbody>
+            </table>
+            </td>";
+
+    
+    
+        $point += 1;
+    
 
 
+    $month = $month . $day;
+    if($schema->hasNext()){$schema->Next();}
+    if($schema->hasNext()){$schema->Next();}
+    if($schema->hasNext()){$schema->Next();}
 
-MONTH;
+
+}
+$month = $month . "</tr>
+                   </tbody>";
 
 ?>

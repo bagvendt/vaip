@@ -5,7 +5,8 @@ class Schemas extends Controllers {
     function index() {
         if($user = $this->models->getUser())
         {
-
+            
+            //$this->views->populate('month', $schema);
             $this->views->flush('body', 'month');
 
         } else {
@@ -18,7 +19,7 @@ class Schemas extends Controllers {
        if($user = $this->models->getUser())
         {
             //fix date format
-            $shift = ShiftFactory::createShift(1230681600 + 86400 * $this->route->getParam(3),0);
+            $shift = ShiftFactory::createShift($this->route->getParam(3),$this->route->getParam(4));
             $this->views->populate('shift', $shift);
             $this->views->flush('body', 'shift');
 

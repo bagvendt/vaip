@@ -30,7 +30,7 @@ insert into wish values(18,1,3,false,false);
 insert into wish values(19,1,3,false,false);
 insert into wish values(20,1,3,false,false);
 insert into wish values(21,1,3,false,false);
-insert into wish values(22,1,3,false,false);
+insert into wish values(22,1,1,false,false);
 insert into wish values(23,1,3,false,false);
 insert into wish values(24,1,3,false,false);
 insert into wish values(25,1,3,false,false);

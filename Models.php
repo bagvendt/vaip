@@ -7,7 +7,7 @@ class Models {
     function __construct($dbhost, $dbuser, $dbpswd, $dbname) {
         // assert that the resources we need are there
         if(!defined('MODELS'))
-            die();
+            die("");
 
         // Model-specs
         require_once MODELS. '/UserFactory.php';
