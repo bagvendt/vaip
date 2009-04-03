@@ -6,7 +6,6 @@ class Schemas extends Controllers {
         if($user = $this->models->getUser())
         {
             
-            //$this->views->populate('month', $schema);
             $this->views->flush('body', 'month');
 
         } else {

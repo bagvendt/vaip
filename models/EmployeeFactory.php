@@ -60,13 +60,27 @@ class EmployeeFactory
 		
 	}
 
-    //lav om så empID bliver auto increment, og returneres
-    function insertEmployee($id,$name,$address,$email,$phone )
+    function employeeList()
+    {
+        $list = array();
+        $result = mysql_query("SELECT empid FROM employee");
+        $i = 0;
+        while($row = mysql_fetch_assoc($result))
         {
             
-
-            $result = mysql_query("insert into employee values($id, '$name', '$address', '$email', '$phone')");
-            return $result;
+            $list[$i] = EmployeeFactory::createEmployee($row['empid']);
+            $i++;
         }
+        return $list;
+    }
+
+    //lav om så empID bliver auto increment, og returneres
+    function insertEmployee($id,$name,$address,$email,$phone )
+    {
+        $result = mysql_query("insert into employee values($id, '$name', '$address', '$email', '$phone')");
+        return $result;
+    }
+
+
 }
 ?>

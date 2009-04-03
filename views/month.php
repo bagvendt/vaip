@@ -37,19 +37,20 @@ while($schema->hasNext())
     }
 
     $day = "<td>
+            $date
             <table border = '1'>
             <tbody>
             <tr>
-            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/0/\"> $date : DV</a></td>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/0/\"> DV: ". ShiftFactory::createShift($shift->get_date() , 0)->get_employee()->getName()  ."</a></td>
             </tr>
             <tr>
-            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/1/\"> $date : AV</a></td>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/1/\"> AV: ". ShiftFactory::createShift($shift->get_date() , 1)->get_employee()->getName()  ."</a></td>
             </tr>
             <tr>
-            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/2/\"> $date : NV</a></td>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/2/\"> NV: ". ShiftFactory::createShift($shift->get_date() , 2)->get_employee()->getName()  ."</a></td>
             </tr>
             <tr>
-            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/3/\"> $date : BV</a></td>
+            <td><a href=\"/Schemas/Shift/" . $shift->get_date() . "/3/\"> BV: ". ShiftFactory::createShift($shift->get_date() , 3)->get_employee()->getName()  ."</a></td>
             </tr>
             </tbody>
             </table>

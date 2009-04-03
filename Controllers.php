@@ -20,6 +20,8 @@ class Controllers {
             $this->views->addMenuItem('/Users/Profile/', 'Profile');
             $this->views->addMenuItem('/Users/Logout/', 'Logout');
             $this->views->addMenuItem('/Schemas/', 'Skema');
+            $this->views->addMenuItem('/Change/', 'Vagtbyt');
+            $this->views->addMenuItem('/Change/active/', 'Tilbud');
 
             // user
             echo $this->models->getUser()->getEmail();
