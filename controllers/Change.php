@@ -130,7 +130,12 @@ class Change extends Controllers {
                 {
                     if($shift['emp'] != $user->getEmployeeId())
                     {
-                        $output = $output . "{$shift['type']}   {$shift['day']}<br/>";
+                        $type = DV;
+                        if($shift['type'] == 1){$type = AV;}
+                        if($shift['type'] == 2){$type = NV;}
+                        if($shift['type'] == 3){$type = BV;}
+                        $day = date("d. M", $shift['day']);
+                        $output = $output . "$type d.  $day<br/>";
                     }
 
                 }
