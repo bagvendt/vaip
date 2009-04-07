@@ -111,7 +111,7 @@ class Change extends Controllers {
                                     <td>";
                 foreach($switch as $shift)
                 {
-                    if($shift['emp'] == $user->getEmployeeId())
+                    if($shift['emp'] == $user->getEmployeeId() && $shift['day'] > 0)
                     {
                         $type = DV;
                         if($shift['type'] == 1){$type = AV;}
@@ -128,7 +128,7 @@ class Change extends Controllers {
 
                 foreach($switch as $shift)
                 {
-                    if($shift['emp'] != $user->getEmployeeId())
+                    if($shift['emp'] != $user->getEmployeeId() && $shift['day'] > 0)
                     {
                         $type = DV;
                         if($shift['type'] == 1){$type = AV;}

@@ -20,7 +20,7 @@ foreach ($this->senderShifts as $shift) {
     if($shift->get_type() == 1){$type = AV;}
     if($shift->get_type() == 2){$type = NV;}
     if($shift->get_type() == 3){$type = BV;}
-    
+
     $date = date("d M", $shift->get_date());
     $change = $change . "$type $date <input type='checkbox' name='s$i' value='1' /> <br/>";
     $i++;

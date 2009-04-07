@@ -97,7 +97,7 @@
 
             while($row = mysql_fetch_assoc($result))
             {
-                $list[$i] = ShiftFactory::createShift($row['dayID'],$row['type'] );
+                $list[$i] = ShiftFactory::createShift($row['dayid'],$row['type'] );
                 $i++;
             }
             return $list;
@@ -128,7 +128,7 @@
         {
            
 
-            $result = mysql_query("UPDATE shift SET userid = $userid WHERE dayID = $dayID AND type = $type");
+            $result = mysql_query("UPDATE shift SET userid = $userid WHERE dayid = $dayID AND type = $type");
             return $result;
         }
 
@@ -136,7 +136,7 @@
         {
             
 
-            $result = mysql_query("UPDATE shift SET message = $message WHERE dayID = $dayID AND type = $type");
+            $result = mysql_query("UPDATE shift SET message = $message WHERE dayid = $dayID AND type = $type");
             return $result;
         }
 

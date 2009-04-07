@@ -5,7 +5,8 @@ class Schemas extends Controllers {
     function index() {
         if($user = $this->models->getUser())
         {
-            
+            $employee = $this->user->getEmployee();
+            $this->views->populate('employee', $employee);
             $this->views->flush('body', 'month');
 
         } else {

@@ -85,7 +85,6 @@ class WishFactory {
 
         while($schema->hasNext())
         {
-            
             $schema->next()->commitShift();
         }
 

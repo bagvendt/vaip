@@ -73,3 +73,70 @@ td.key {
 td.text {
     padding-top: 0px;
 }
+
+.schema{
+    width: 100%;
+    border:5px solid navy;
+    background-color: #F8F8FF;
+    border-collapse:collapse;
+}
+
+.day{
+    padding:0;
+    width: 14%;
+    border:1px solid navy;
+    border-collapse:collapse;
+    text-indent:1em;
+}
+
+.day div{
+    height:3em;
+    
+}
+.day div a:hover{
+    text-decoration: none;
+}
+
+.day .head{
+    color:#FFFFFF;
+    background-color: navy;
+    padding:0;
+}
+
+.dayhead{
+    position:relative;
+    top:-2px;
+    left:-2px;
+    width:102.5%;
+    height:111%;
+    font-weight:bold;
+
+}
+
+.back:hover {
+    background-color:silver;
+}
+
+.dayhead td.head{
+
+    width:55%;
+    text-indent: 0.5em;
+}
+
+.daybody:hover {
+    background-color:silver;
+}
+
+.myshift{
+    background-color: lime;
+}
+
+.myshift:hover{
+    background-color: teal;
+}
+
+.daybody a {
+    position:relative;
+    top:1em;
+    font-weight:bold;
+}
